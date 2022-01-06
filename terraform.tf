@@ -1,16 +1,22 @@
   terraform {
   required_providers {
-    azurerm = {
-      source = "hashicorp/azurerm"
-      version = "~>2.90.0"
+    aws = {
+      source = "hashicorp/aws"
+      version = "~>3.70.0"
     }
   }
 }
 
-provider "azurerm" {
+provider "aws" {
   # Configuration options
-  features{}
-  subscription_id="0356b164-fd8c-4b47-aac9-a5a38b5abe7d"
+  region="us-east-2"
 }
 
-
+resource "aws_instance" "Test_Instance" {
+  ami           = data.aws_ami.EC2_ami.id
+  instance_type = "t2.micro"
+  tags = {
+    Name = "Test"
+    env = "Prod"
+  }
+}
