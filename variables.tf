@@ -4,12 +4,10 @@ variable "region" {
 
 variable "LBname" {
   type = string
+  default = "LB1"
 }
 
-variable "PubIP"{
 
-  type = list(string)  
-}
 
 variable "sg_ports" {
 
